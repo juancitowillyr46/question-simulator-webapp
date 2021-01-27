@@ -1,0 +1,107 @@
+    <!-- ======================================
+    ******* Page Wrapper Area Start **********
+    ======================================= -->
+    <div class="ecaps-page-wrapper menu-collasped-active">
+        <!-- Sidemenu Area -->
+        <div class="ecaps-sidemenu-area">
+            <!-- Desktop Logo -->
+            <div class="ecaps-logo">
+                <a href="index.html"><img class="desktop-logo" src="./assets/images/logo-white.png" alt="Desktop Logo"> <img class="small-logo" src="./assets/images/favicon_alteck-2.png" alt="Mobile Logo"></a>
+            </div>
+
+            <!-- Side Nav -->
+            <app-sidebar></app-sidebar>
+        </div>
+
+        <!-- Page Content -->
+        <div class="ecaps-page-content">
+            <!-- Top Header Area -->
+            <app-header></app-header>
+
+
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <!-- Basic Form area Start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-18">Mi Perfil</h4>
+
+                                <!-- <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Form</a></li>
+                                        <li class="breadcrumb-item active">Basic Form</li>
+                                    </ol>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Form row -->
+                    <div class="row">
+                        <div class="col-xl-12 box-margin height-card">
+                            <div class="card card-body">
+                                <h4 class="card-title">Cambio de Clave</h4>
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12">
+                                        <form action="#" action="#" [formGroup]="formGroup">
+                                            <!-- <div class="form-group">
+                                                <label for="exampleInputEmail111">User Name</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail111" placeholder="Enter Username">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail12">Email address</label>
+                                                <input type="email" class="form-control" id="exampleInputEmail12" placeholder="Enter email">
+                                            </div> -->
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword11">Antigua contraseña</label>
+                                                <input type="password" class="form-control" id="exampleInputPassword11" placeholder="Ingrese su antigua contraseña" formControlName="oldPassword" autocomplete="off">
+                                                <label *ngIf="f.oldPassword.errors && f.oldPassword.errors.minlength" id="cname-error" class="error mt-2 text-danger" for="cname">
+                                                    <div *ngIf="f.oldPassword.errors.minlength">La clave debe contener mínimo 6 dígitos</div>
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword12">Nueva contraseña</label>
+                                                <input type="password" class="form-control" id="exampleInputPassword12" placeholder="Ingrese su nueva contraseña" formControlName="newPassword" autocomplete="off">
+                                                <label *ngIf="f.newPassword.errors && f.newPassword.errors.minlength" id="cname-error" class="error mt-2 text-danger" for="cname">
+                                                    <div *ngIf="f.newPassword.errors.minlength">La clave debe contener mínimo 6 dígitos</div>
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword12">Confirmar contraseña</label>
+                                                <input type="password" class="form-control" id="exampleInputPassword12" placeholder="Ingrese nuevamente su contraseña" formControlName="confirmPassword" autocomplete="off">
+                                                <label *ngIf="f.confirmPassword.errors && f.confirmPassword.errors.mustMatch" id="cname-error" class="error mt-2 text-danger" for="cname">
+                                                    <div *ngIf="f.confirmPassword.errors.mustMatch">La clave no coincide</div>
+                                                </label>                                       
+                                            </div>
+                                            <!-- <div class="form-group">
+                                                <div class="checkbox d-inline mb-0">
+                                                    <input type="checkbox" name="checkbox-1" id="checkbox-8">
+                                                    <label for="checkbox-8" class="cr mb-0">Remember me</label>
+                                                </div>
+                                            </div> -->
+                                            <button type="button" [disabled]="submit" class="btn btn-primary mr-2 mt-15" (click)="onSubmit()">
+                                                <span *ngIf="submit" class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
+                                                Guardar
+                                            </button>
+                                            <button type="button" class="btn btn-danger mt-15" (click)="onReturn()">Retornar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- end row -->
+
+
+
+
+                </div>
+
+                <!-- Footer Area -->
+                <app-footer></app-footer>
+            </div>
+        </div>
+    </div>

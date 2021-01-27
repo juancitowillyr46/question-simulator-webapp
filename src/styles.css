@@ -1,0 +1,206 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/* Sidebar  */
+/* .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding-top: 48px;
+}
+
+.navbar .navbar-toggler {
+    top: .25rem;
+    right: 1rem;
+}
+
+.navbar-brand {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, .25);
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+    text-align: center;
+}
+
+.navbar .navbar-toggler {
+    top: .25rem;
+    right: 1rem;
+} */
+
+/* Exams Style */
+/* .border-dark{
+    border: 4px #f8f9fa solid !important;
+}
+
+.highlight{
+    background-color: #f8f9fa;
+}
+
+.border-dark > p {
+    line-height: 26px !important;
+}
+
+.btn-group-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: flex-end;
+  grid-gap: .2em;
+}
+
+.btn-group-grid > div {
+  display: flex;
+}
+
+
+button:focus {outline:0 !important;}
+
+.btn:focus  {
+    outline: 0 !important;
+}
+
+html {
+    scroll-behavior: smooth !important;
+}
+
+.navbar-dark{
+    background-color: #1e6dbd !important;
+}
+
+.navbar-brand{
+    box-shadow: none !important;
+} */
+
+/* Simulate  */
+
+/* .yta-text{
+    color: #1e6dbd;
+    text-decoration: none !important;
+}
+
+.exam-title {
+    color: #FFF;
+}
+
+.exam-button-slider {
+    background-color:#1e6dbd;
+    border: 1px solid #1e6dbd;
+}
+
+.exam-button-slider:hover {
+    background-color:#16528e;
+    border: 1px solid #16528e;
+}
+
+.exam-button-language {
+    width: 8em;
+    display: block;
+    align-content: center;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    color: #1e6dbd;
+    text-decoration: none;
+}
+
+.exam-button-language:hover {
+    color: #1e6dbd;
+    text-decoration: none;
+}
+
+.exam-question-options  {
+
+}
+
+.exam-question-body {
+    padding: 0.5em;
+}
+
+.exam-quesion-header {
+    background: #ffffff;
+    padding: 0.5em;
+}
+    .exam-quesion-header fa-icon{
+        color: #1e6dbd !important;
+    }
+
+    .exam-quesion-header .active-traslate{
+        background-color: #28a745 !important;
+        color: #ffffff !important;
+    }
+
+    .exam-quesion-header .active-traslate a{
+        color: #ffffff !important;
+    }
+
+    .exam-quesion-header .active-traslate fa-icon{
+        color: #ffffff !important;
+    }
+
+.exam-question-answers {
+    padding: 0.5em;
+}
+
+.exam-badge-title {
+    background-color: #1e6dbd !important;
+}
+
+.exam-inprogress {
+    color: #1e6dbd
+}
+
+.exam-modal-body{
+    display: inline-flex;
+    padding-bottom: 1em;
+    padding-top: 0.5em;width: 100%;
+}
+
+.exam-modal-tab {
+    width: 10em;
+    color: #1e6dbd !important;
+    text-decoration: none;
+}
+
+.exam-modal-questions {
+    padding-top: 1em; height: 70vh;
+    overflow-y: scroll;
+}
+    .exam-modal-questions ul {
+        padding: 0px;
+        list-style: none;
+    }
+
+        .exam-modal-questions ul a{
+            color: #1e6dbd !important;
+            text-decoration: none;
+        }
+
+            .exam-modal-questions ul span{
+                color: #c1c1c1;
+            }
+
+    .activePopup{
+        text-decoration: underline !important;
+    }
+     */
+
+/* Active Traducción */
+/* .active-traslate{
+    background-color: #28a745 !important;
+    color: #ffffff !important;
+}
+
+.active-traslate a{
+    color: #ffffff !important;
+}
+
+.active-traslate fa-icon{
+    color: #ffffff !important;
+}
+
+.answer-correct {
+    background-color: #28a745;
+    color: #ffffff;
+} */

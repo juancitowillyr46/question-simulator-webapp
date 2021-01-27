@@ -1,0 +1,245 @@
+<!-- <app-nav></app-nav> -->
+<div class="container">
+  <div class="row justify-content-md-center mt-4">
+      <!-- <app-sidebar></app-sidebar> -->
+      <div class="col-6">
+
+        <!-- <div class="row">
+          <div class="col-4 text-right p-0 pb-2">
+            <span class="font-weight-bold yta-text">Título</span>
+          </div>
+          <div class="col-8 p-0">
+            <span class="d-inline-block p-0">: PROFESSIONAL SCRUM MASTER I</span>
+          </div>
+        </div> -->
+        
+        <div class="col-12 text-center pb-4">
+          <button class="btn btn-rounded btn-success mr-1" (click)="irExamenes()">
+            Ir a exámenes disponibles
+          </button>
+        </div>
+
+        <div class="row">
+          <div class="col-4 text-right p-0 pb-2">
+            <span class="font-weight-bold yta-text">Porcentaje</span>
+          </div>
+          <div class="col-8 p-0">
+            <span class="d-inline-block p-0">: {{ (porcApprovedTxt == '0.0')? 0: porcApprovedTxt  }}% de Aprobación</span>
+          </div>
+        </div>
+
+        <!-- <div class="row">
+          <div class="col-4 text-right p-0 pb-2">
+            <span class="font-weight-bold">Duración</span>
+          </div>
+          <div class="col-8 p-0">
+            <span class="d-inline-block p-0">: 00:04:50</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 text-right p-0 pb-2">
+            <span class="font-weight-bold">Fecha inicio</span>
+          </div>
+          <div class="col-8 p-0">
+            <span class="d-inline-block">: 07/09/2020 22:03:00</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 text-right p-0 pb-2">
+            <span class="font-weight-bold">Fecha fin</span>
+          </div>
+          <div class="col-8 p-0">
+            <span class="d-inline-block p-0">: 07/09/2020 22:03:00</span>
+          </div>
+        </div> -->
+
+        <div class="row">
+          <div class="col-4 text-right p-0 pb-2">
+            <span class="font-weight-bold yta-text">Total de preguntas</span>
+          </div>
+          <div class="col-8 p-0">
+            <span class="d-inline-block pr-2">: {{ getQuestions.length }}</span>
+          </div>
+        </div>
+        
+
+        <div class="row">
+          <div class="col-4 text-right p-0 pb-2">
+            <span class="font-weight-bold yta-text">Preguntas correctas</span>
+          </div>
+          <div class="col-8 p-0">
+            <span class="d-inline-block pr-2">: {{ answerCheckedSuccess }}</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 text-right p-0 pb-2">
+            <span class="font-weight-bold yta-text">Preguntas incorrectas</span>
+          </div>
+          <div class="col-8 p-0">
+            <span class="d-inline-block p-0">: {{ answerCheckedError }}</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 text-right p-0 pb-2">
+            <span class="font-weight-bold yta-text">Resultado</span>
+          </div>
+          <div class="col-8 p-0">
+            <span class="d-inline-block p-0">: {{ alert.message }}</span>
+          </div>
+        </div>
+
+      </div>
+      <hr class="w-100">
+
+
+
+      <div class="col-12">
+        <!-- <p class="text-center mt-4">
+         Revisa tus respuestas
+        </p> -->
+        <!-- <a href="#" class="d-block yta-text text-center">
+          <fa-icon class="mr-2 h6" [icon]="['fas', 'list-ol']"></fa-icon>
+          Ver todas las preguntas
+        </a> -->
+        <table>
+          <tr>
+            <td colspan="2"><b>Leyenda Informativa</b></td>
+          </tr>
+          <tr>
+            <td align="center"><fa-icon [icon]="['fas', 'check']" class="text-info pr-1"></fa-icon></td><td class="pl-2">Respuesta contestada correcta</td>
+          </tr>
+          <tr>
+            <td align="center"><fa-icon [icon]="['fas', 'times']" class="text-danger pr-1"></fa-icon></td><td class="pl-2">Respuesta contestada incorrecta</td>
+          </tr>
+          <tr>
+            <td align="center" ><fa-icon [icon]="['fas', 'hand-point-right']" class="text-success pr-1"></fa-icon></td>
+            <td class="pl-2">Respuesta correcta</td>
+          </tr>
+        </table>
+        <hr class="w-100">
+      </div>
+
+      <div class="row">
+        <!-- *ngIf="false" -->
+        <div class="col-12 mt-1">
+          <div *ngFor="let question of getQuestions; let i = index;" class="mt-4">
+            <div class="pt-2 pb-2">
+              <!-- Pregunta {{ (i + 1) }} -->
+              <span class="badgex badge-pillx badge-primaryx exam-badge-title p-0 mr-2">Pregunta N° {{(i + 1)}}</span>
+              <!-- <span (click)="translate()" class="badge badge-pill badge-light p-2 mr-2" placement="top" ngbTooltip="Traduce la pregunta" [ngClass]="{'active-traslate': isTraslate}">
+                <a href="javascript:void(0)" class="exam-button-language" href="javascript:void(0)" >
+                  <fa-icon class="pr-1" [icon]="['fas', 'eye']"></fa-icon>Traducir
+                </a>
+              </span> -->
+
+              <!-- <ng-container>
+                <button (click)="translate()" type="button" [ngClass]="{'btn-primary': !isTraslate, 'btn-success': isTraslate}" class="btn btn-rounded mr-2"><fa-icon class="pr-1" [icon]="['fas', 'language']"></fa-icon> Traducción </button>
+              </ng-container>
+               -->
+
+            </div>
+            <div class="pt-2 pb-2">
+              <p>
+                <span *ngIf="!isTraslate">{{ question.data.questionEn }}</span>
+                <span *ngIf="isTraslate">{{ question.data.question }}</span>
+              </p>
+              <!-- <p *ngIf="question.data.question">
+                {{ (question.data.question && question.data.question != '')? question.data.question : '' }}
+              </p> -->
+            </div>
+            <!-- <div class="border border-dark p-3 rounded highlight" *ngIf="question.data.questionEn">
+              <div class="text-info pb-1">
+                En inglés:
+              </div>
+              <p class="text-muted mb-0">
+                
+              </p>
+            </div> -->
+            <!-- <div class="p-0 mt-0">
+              <div><fa-icon [icon]="['fas', 'list']" class="mr-1 text-info"></fa-icon> Respuestas</div>
+            </div> -->
+            <div class="p-0">
+              <table>
+                <!-- <tr>
+                  <td class="mb-4"></td>
+                  <td><fa-icon [icon]="['fas', 'user']" class="mr-2 text-info"></fa-icon></td>
+                  <td></td>
+                  <td></td>
+                </tr> -->
+
+                <tr style="vertical-align: initial;" *ngFor="let answer of question.data.answers; let i = index;">
+                  <!-- <td>
+                    <fa-icon [icon]="validateOptionCorrect(answer, question.data.typeAnswer)" [class]="checkedIsNullOption(answer, question.data.typeAnswer)? 'mr-2 text-light' : 'mr-2 text-danger'"></fa-icon>
+                  </td> -->
+
+                  <td>
+                    <fa-icon *ngIf="validateOptionCorrect(answer, question.data.typeAnswer) === 1" [icon]="['fas', 'check']" class="text-info pr-1"></fa-icon>
+                    <fa-icon *ngIf="validateOptionCorrect(answer, question.data.typeAnswer) === 2" [icon]="['fas', 'times']" class="text-danger pr-1"></fa-icon>
+                    <fa-icon *ngIf="validateOptionCorrect(answer, question.data.typeAnswer) === 3" [icon]="['fas', 'hand-point-right']" class="text-success pr-1"></fa-icon>
+                  </td>
+                  <!-- <td>
+                    <fa-icon *ngIf="validateCheckedUser(answer, question.data.typeAnswer)" [icon]="['fas', 'check']" class="mr-2 text-info"></fa-icon>
+                  </td>
+                  <td>
+                    <fa-icon *ngIf="validateCheckedSystem(answer, question.data.typeAnswer)"  [icon]="['fas', 'hand-point-right']" class="mr-2 text-success"></fa-icon>
+                  </td> -->
+                  <td class="w-100">
+                    <div class="p-0 mt-0 pb-1 pl-1" [ngClass]="{'answer-correct': (answer.isCorrect && validateOptionCorrect(answer, question.data.typeAnswer) === 3)}">
+                      <!--  -->
+                      <span>{{alphabeticalOrder[i]}}): </span>
+                      <!-- <div class="d-inline-flex" *ngIf="question.typeAnswer == 'TRUE_OR_FALSE' && answer.value == true"> 
+                        True
+                      </div>
+                      <div class="d-inline-flex" *ngIf="question.typeAnswer == 'TRUE_OR_FALSE' && answer.value == false"> 
+                        False
+                      </div> -->
+
+                      <!-- <br>-{{ question.typeAnswer }}-<br> -->
+                      <!-- {{ dataExam | json }} -->
+                      <span *ngIf="question.data.typeAnswer == 'TRUE_OR_FALSE' && answer.value == true">True</span>
+                      <span *ngIf="question.data.typeAnswer == 'TRUE_OR_FALSE' && answer.value == false">False</span>
+                      <span *ngIf="question.data.typeAnswer != 'TRUE_OR_FALSE' && dataExam?.language == 'EN'">
+                        <ng-container *ngIf="!isTraslate">{{ answer.nameEn }}</ng-container>
+                        <ng-container *ngIf="isTraslate">{{ answer.name }}</ng-container>
+                      </span>
+                      <span *ngIf="question.data.typeAnswer != 'TRUE_OR_FALSE' && dataExam?.language == 'ES'">
+                        <ng-container *ngIf="isTraslate">{{ answer.nameEn }}</ng-container>
+                        <ng-container *ngIf="!isTraslate">{{ answer.name }}</ng-container>
+                      </span>
+                    </div>
+                    <div class="pb-1">
+
+                    </div>
+                    <!-- <div class="p-0" *ngIf="answer.nameEn">
+                      {{ (answer.nameEn)? answer.nameEn : '' }}
+                    </div> -->
+                    <!-- <hr> -->
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="p-0 pt-4">
+              <div><fa-icon [icon]="['fas', 'info-circle']" class="mr-1 text-info"></fa-icon> Justificación</div>
+            </div>
+            <div class="p-0 pt-1">
+              {{ (question.data.justification)? question.data.justification : '' }}
+            </div>
+
+            <hr class="w-100">
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="col-12 text-center pb-4">
+        <button class="btn btn-rounded btn-success mr-1" (click)="irExamenes()">
+          Ir a exámenes disponibles
+        </button>
+      </div>
+
+  </div>
+</div>

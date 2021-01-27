@@ -1,0 +1,50 @@
+    <!-- ======================================
+    ******* Page Wrapper Area Start **********
+    ======================================= -->
+    <div class="ecaps-page-wrapper menu-collasped-active" >
+        <!-- Sidemenu Area -->
+        <div class="ecaps-sidemenu-area" *ngIf="!data?.progressExam">
+            <!-- Desktop Logo -->
+            <div class="ecaps-logo">
+                <a href="index.html"><img class="desktop-logo" src="./assets/images/logo-white.png" alt="Desktop Logo"> <img class="small-logo" src="./assets/images/favicon_alteck-2.png" alt="Mobile Logo"></a>
+            </div>
+
+            <!-- Side Nav -->
+            <app-sidebar></app-sidebar>
+        </div>
+
+        <!-- Page Content -->
+        <div class="ecaps-page-content" [ngStyle]="{'margin-left': (!data?.progressExam)? '65px' : '0px', 'padding-top': (!data?.progressExam)? '70px' : '0px'}">
+            <!-- Top Header Area -->
+            <app-header *ngIf="!data?.progressExam"></app-header>
+
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="row" *ngIf="!data?.progressExam">
+                         <div class="col-12">
+                             <div class="page-title-box d-flex align-items-center justify-content-between">
+                                 <h4 class="mb-0 font-18">{{data?.title}}</h4>
+ 
+                                 <!-- <div class="page-title-right">
+                                     <ol class="breadcrumb m-0">
+                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Simulador</a></li>
+                                         <li class="breadcrumb-item active">Examenes disponibles</li>
+                                     </ol>
+                                 </div> -->
+                             </div>
+                         </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12">
+                            <router-outlet></router-outlet>
+                        </div>
+                     </div>
+                     
+                 </div>
+                <!-- Footer Area -->
+                <app-footer *ngIf="!data?.progressExam"></app-footer>
+            </div>
+        </div>
+    </div>
+    

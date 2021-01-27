@@ -1,0 +1,195 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 box-margin">
+      <div class="card">
+          <div class="card-body">
+              <h5 class="font-14">Tu progreso {{ totalPorcertange }}% </h5> 
+              <!-- <span class="float-right">{{ totalPorcertange }}%</span> -->
+              <div class="progress h-8 mb-20">
+                  <div class="progress-bar bg-danger wow animated progress-animated animated" [ngStyle]="{'width': totalPorcertange + '%', 'visibility': 'visible'}" role="progressbar"> <span class="sr-only">{{ totalPorcertange }}% Complete</span> </div>
+              </div>
+              <h5 class="font-14">Tiempo restante: <span id="timer"></span>  </h5>
+          </div>
+      </div>
+    </div>
+    <div class="col-12 box-margin">
+      <div class="card">
+          <div class="card-body">
+              <div class="alert alert-success" role="alert" *ngIf="dismissible">
+                Guardado correctamente
+              </div>
+              <h4 class="card-title mb-0">
+                <div class="pr-4 d-inline-block">Pregunta N° {{(orderQuestion+1)}} </div>
+                <!-- - {{questions.length}}  -->
+
+                <!-- {{ dataProfile. | json }}  *ngIf="dataProfile?.plan?.supportTranslation" -->
+
+                <ng-container *ngIf="dataProfile?.plan?.supportTranslation">
+                  <button *ngIf="dataExam?.supportSpanish" (click)="translate()" type="button" [ngClass]="{'btn-primary': !isTraslate, 'btn-success': isTraslate}" class="btn btn-rounded mr-2">
+                    <fa-icon class="pr-1" [icon]="['fas', 'language']"></fa-icon> Traducción 
+                  </button>
+                </ng-container>
+
+
+                <button (click)="addBookMarks(question, orderQuestion)" type="button" [ngClass]="{'btn-primary': !question.marked, 'btn-success': question.marked}" class="btn btn-rounded mr-2">
+                  <i class="fa fa-save"></i> 
+                  <span class="ml-2" *ngIf="question.marked">Guardado</span>
+                  <span class="ml-2" *ngIf="!question.marked">Guardar</span>
+                </button>
+                <button type="button" class="btn btn-link mb-2 mr-2" (click)="showAllPopup(content)">
+                  <fa-icon class="mr-2 h6" [icon]="['fas', 'list-ol']"></fa-icon> Ver preguntas
+                </button>
+              </h4>
+              <div class="exam-question-body pt-0">
+                <h6 class="mb-2 mt-4" *ngIf="dataExam.language == 'EN'">
+                  <ng-container *ngIf="!isTraslate">{{ question.questionEn }}</ng-container>
+                  <ng-container *ngIf="isTraslate">{{ question.question }}</ng-container>
+                </h6>
+                <h6 class="mb-2 mt-4" *ngIf="dataExam.language == 'ES'">
+                  <ng-container *ngIf="isTraslate">{{ question.questionEn }}</ng-container>
+                  <ng-container *ngIf="!isTraslate">{{ question.question }}</ng-container>
+                </h6>
+                <!-- <div class="pt-2 pb-0 mb-0" *ngIf="settingLanguage=='BOTH'">
+                  <h6 style="font-size: 15px" *ngIf="!isTraslate">{{ question.questionEn }}</h6>
+                  <h6 style="font-size: 15px" *ngIf="isTraslate">{{ question.question }}</h6>
+                </div> -->
+              </div>
+              <div class="exam-question-answers">
+                <div *ngIf="question.answers && question.answers.length">
+                  <div class="pl-0 pr-0 pt-2 pb-0">
+                    <div class="form-check mb-3" *ngFor="let answer of question.answers; let i = index;">
+                      <input [disabled]="saveOption" class="form-check-input" [checked]="(answer.checked == true)? answer.checked : null" (change)="checkedOption($event, question.answers, question, orderQuestion, i)" [type]="getTypeAnswer(question.typeAnswer)" [name]="'option_' + orderQuestion" [id]="'option_' + orderQuestion + '_' + i">
+                      <label class="d-inline-flex form-check-label w-100" [for]="'option_' + orderQuestion + '_' + i">
+                        <span class="d-inline-flex d-inline-flex pl-4 pr-1">{{ alphabeticalOrder[i] }})</span>
+
+                        <div class="d-inline-flex" *ngIf="question.typeAnswer == 'TRUE_OR_FALSE'"> 
+                          <span *ngIf="answer.value">
+                            <ng-container *ngIf="!isTraslate">True</ng-container>
+                            <ng-container *ngIf="isTraslate">Verdadero</ng-container>
+                          </span>
+                          <span *ngIf="!answer.value">
+                            <ng-container *ngIf="!isTraslate">False</ng-container>
+                            <ng-container *ngIf="isTraslate">Falso</ng-container>
+                          </span>
+                          <!-- <ng-container *ngIf="dataExam?.language == 'EN'">
+                            <span *ngIf="answer.value">
+                              <ng-container *ngIf="!isTraslate">True</ng-container>
+                              <ng-container *ngIf="isTraslate">Verdadero</ng-container>
+                            </span>
+                            <span *ngIf="!answer.value">
+                              <ng-container *ngIf="!isTraslate">False</ng-container>
+                              <ng-container *ngIf="isTraslate">Falso</ng-container>
+                            </span>
+                          </ng-container>
+                          <ng-container *ngIf="dataExam?.language == 'ES'">
+                            <span *ngIf="answer.value">
+                              <ng-container *ngIf="!isTraslate">True</ng-container>
+                              <ng-container *ngIf="isTraslate">Verdadero</ng-container>
+                            </span>
+                            <span *ngIf="!answer.value">
+                              <ng-container *ngIf="!isTraslate">False</ng-container>
+                              <ng-container *ngIf="isTraslate">Falso</ng-container>
+                            </span>
+                          </ng-container> -->
+                          
+                        </div>
+                        <!-- <div class="d-inline-flex" *ngIf="question.typeAnswer == 'TRUE_OR_FALSE' && answer.value == true"> 
+                          <span *ngIf="dataExam?.language == 'EN'">
+                            <ng-container *ngIf="!isTraslate">True</ng-container>
+                            <ng-container *ngIf="isTraslate">Verdadero</ng-container>
+                          </span>
+                        </div>
+                        <div class="d-inline-flex" *ngIf="question.typeAnswer == 'TRUE_OR_FALSE' && answer.value == false"> 
+                          <span *ngIf="dataExam?.language == 'ES'">
+                            <ng-container *ngIf="isTraslate">False</ng-container>
+                            <ng-container *ngIf="!isTraslate">Falso</ng-container>
+                          </span>
+                        </div> -->
+
+                        <div class="d-inline-flex" *ngIf="question.typeAnswer != 'TRUE_OR_FALSE'"> 
+                          <span *ngIf="dataExam?.language == 'EN'">
+                            <ng-container *ngIf="!isTraslate">{{ answer.nameEn }}</ng-container>
+                            <ng-container *ngIf="isTraslate">{{ answer.name }}</ng-container>
+                          </span>
+                          <span *ngIf="dataExam?.language == 'ES'">
+                            <ng-container *ngIf="isTraslate">{{ answer.nameEn }}</ng-container>
+                            <ng-container *ngIf="!isTraslate">{{ answer.name }}</ng-container>
+                          </span>
+                        </div>
+                        
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 p-0 mt-4">
+                <div class="d-flex">
+                  <div class="w-100 text-left">
+                    <button (click)="lastQuestion()"  [disabled]="disabledButtonLast || (orderQuestion + 1) === 1" class="btn btn-success text-uppercase exam-button-slider btn-rounded mr-2">
+                      <fa-icon class="pr-1" [icon]="['fas', 'caret-left']"></fa-icon>
+                      Anterior
+                    </button>
+                    <button (click)="nextQuestion()" [disabled]="disabledButtonNext || (orderQuestion + 1) === questions.length" class="btn btn-success text-uppercase exam-button-slider btn-rounded mr-2">
+                      Siguiente
+                      <fa-icon class="pl-1" [icon]="['fas', 'caret-right']"></fa-icon>
+                    </button>
+                    <button type="button" [disabled]="progressService" *ngIf="(orderQuestion + 1) === questions.length" class="btn btn-rounded btn-warning" (click)="endExam(questions)">
+                      <span *ngIf="progressService" class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
+                      Terminar evaluación
+                    </button>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="exam-modal-body pb-4">
+      <a class="exam-modal-tab mr-2" id="ALL-QUESTIONS" href="javascript:void(0)" (click)="showQuestionsForType('ALL_QUESTIONS')">
+        <fa-icon class="mr-2 h6" [icon]="['fas', 'list-ol']"></fa-icon>
+        Todas las preguntas
+      </a>
+      <a class="exam-modal-tab" id="BOOKMARKED" href="javascript:void(0)" (click)="showQuestionsForType('BOOKMARKED')">
+        <fa-icon class="mr-2 h6" [icon]="['fas', 'bookmark']"></fa-icon>
+        Ver Guardadas ({{countBookMarked}})
+      </a>
+    </div>
+    
+    <div class="exam-modal-questions">
+      <div class="table-responsive" style="overflow-y: auto;height: 40em;">
+        <table class="table table-striped table-nowrap mb-0 dt-responsive nowrap">
+          <thead>
+            <tr>
+              <th>N° Pregunta</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let question of popupShowQuestions; let i = index;">
+                <td>
+                  <a href="javascript:void(0)" (click)="goQuestion(question['data']['numQuestion'])">
+                    <fa-icon class="mr-2 h6" [icon]="['fas', 'share']"></fa-icon> {{(question['data']['numQuestion'])}}
+                  </a>
+                </td>
+                <td>
+                  <span *ngIf="question['data']['isAnswered'] === true"><fa-icon class="pl-1 " [icon]="['fas', 'check']"></fa-icon></span>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer"></div>
+</ng-template>

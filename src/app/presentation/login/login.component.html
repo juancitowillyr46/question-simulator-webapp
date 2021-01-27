@@ -1,0 +1,84 @@
+    <!-- ======================================
+    ******* Page Wrapper Area Start **********
+    ======================================= -->
+
+    <div [ngClass]="{'main-content-': !dataModal?.isExpiredToken, 'h-100vh': !dataModal?.isExpiredToken}">
+      <div [ngClass]="{'container': !dataModal?.isExpiredToken, 'h-100': !dataModal?.isExpiredToken}">
+          <div [ngClass]="{'row': !dataModal?.isExpiredToken, 'h-100': !dataModal?.isExpiredToken, 'align-items-center': !dataModal?.isExpiredToken, 'justify-content-center': !dataModal?.isExpiredToken}">
+              <div [ngClass]="{'col-sm-10': !dataModal?.isExpiredToken, 'col-md-7': !dataModal?.isExpiredToken, 'col-lg-5': !dataModal?.isExpiredToken}">
+                  <!-- Middle Box -->
+                  
+
+                  <div [ngClass]="{'middle-box': !dataModal?.isExpiredToken}">
+                      <div class="card">
+                          <div class="log-header-arae bg-img d-flex align-items-center p-3 primary-color-overlay height-130" style="background-image: url(./assets/img/bg-img/7.jpg)">
+                              <!-- Logo -->
+                              <h4 class="font-22 mb-0 text-white text-center">
+                                  <img src="./assets/images/logo-white.png" style="width: 60%;">
+                              </h4>
+
+                          </div>
+                          <div class="card-body p-4">
+                            <div class="alert alert-warning" role="alert" *ngIf="dataModal?.isExpiredToken">
+                                Su sesión ha caducado. por favor inicie sesión de nuevo.
+                            </div>
+                              <form action="#" [formGroup]="formGroup">
+                                  <div class="form-group">
+                                      <label class="float-left" for="emailaddress">Usuario</label>
+                                      <input class="form-control" type="email" id="emailaddress" required="" placeholder="Ingrese su nombre de usuario" formControlName="username" >
+                                  </div>
+
+                                  <div class="form-group">
+                                      <a href="forget-password.html" class="text-dark float-right"></a>
+                                      <label class="float-left" for="password">Contraseña</label>
+                                      <input class="form-control" type="password" required="" id="password" placeholder="Ingrese su contraseña" formControlName="password" >
+                                  </div>
+
+                                  <div lass="form-group d-flex justify-content-between align-items-center mb-3" *ngIf="!dataModal?.isExpiredToken">
+                                      <!-- <div class="checkbox d-inline mb-0">
+                                          <input type="checkbox" name="checkbox-1" id="checkbox-8">
+                                          <label for="checkbox-8" class="cr mb-0">Remember me</label>
+                                      </div> -->
+                                      <span class="font-13 text-primary"><a  routerLink="/security/forgot-password" href="#">¿Olvidaste la contraseña?</a></span>
+                                  </div>
+
+                                  <div class="form-group mb-0">
+
+                                    <div class="row mt-20">
+                                        <div [ngClass]="{'col-6': dataModal?.isExpiredToken, 'col-12': !dataModal?.isExpiredToken}">
+                                            <button class="btn btn-primary btn-block" type="button" (click)="onSubmit()"> 
+                                                <span *ngIf="submit" class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span> 
+                                                Iniciar sesión
+                                            </button>
+                                        </div>
+                                        <div class="col-6" *ngIf="dataModal?.isExpiredToken">
+                                            <button class="btn btn-danger btn-block" type="button" (click)="onLogout()"> 
+                                                <span *ngIf="submit" class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span> 
+                                                Cerrar 
+                                            </button>
+                                            <!-- <a href="#" class="btn btn-danger waves-effect waves-light mb-2 btn-block"><i class="fa fa-facebook mr-1"></i><span class="text-center">facebook</span></a> -->
+                                        </div>
+                                    </div>
+
+                                    
+                                  </div>
+
+                                  <!-- <div class="row mt-20">
+                                      <div class="col-6">
+                                          <a href="#" class="btn btn-googleplus waves-effect waves-light mb-2 btn-block"><i class="fa fa-google mr-1"></i><span class="text-center">google</span></a>
+                                      </div>
+                                      <div class="col-6">
+                                          <a href="#" class="btn btn-facebook waves-effect waves-light mb-2 btn-block"><i class="fa fa-facebook mr-1"></i><span class="text-center">facebook</span></a>
+                                      </div>
+                                  </div> -->
+
+                                  <!-- <div class="text-center mt-15"><span class="mr-2 font-13">Don't have an account?</span><a class="font-13 font-weight-bold" href="register.html">Sign up</a></div> -->
+
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>

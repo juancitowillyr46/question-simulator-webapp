@@ -1,0 +1,172 @@
+
+<!-- <div class="d-flex ">
+  <div class="spinner-border m-2" role="status" *ngIf="progressService">
+    <span class="sr-only">Loading...</span>
+  </div>
+    
+</div> -->
+
+<!-- <div class="row" *ngIf="!checkPlanActive">
+  <div class="col-12">
+    <ngb-alert [type]="'warning'" [dismissible]="false">Su plan venció</ngb-alert>
+  </div>
+</div> -->
+
+<div class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+      <div class="modal-content" style="width: 48px">
+          <span class="fa fa-spinner fa-spin fa-3x"></span>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <ng-container *ngIf="!userProfile?.plan?.expired">
+    <div class="col-12 box-margin">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="table-responsive cart-area">
+                <table class="table table-borderless table-centered  mb-0">
+                  <thead class="thead-light">
+                    <tr>
+                      <th colspan="2">Exámenes: {{userProfile?.plan?.exams.length}}</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody class="text-center" *ngIf="userProfile">
+                    <tr *ngFor="let exam of userProfile?.plan?.exams; let i = index;">
+                      <td class="text-left">
+                        <img src="./assets/images/favicon_alteck-2.png" alt="contact-img" title="contact-img" class="round mr-3 product-thumb">
+                        <p class="m-0 d-inline-block align-middle font-16">
+                          <span>{{ exam?.name }}</span>
+                          <!-- <fa-icon *ngIf="exam?.attemptsCompleted" class="ml-2 text-success" [icon]="['fas', 'check-circle']"></fa-icon> -->
+                          <br>
+                          <small class="mr-1"><b>Preguntas:</b> {{ exam?.totalQuestions }} |</small>
+                          <small class="mr-1"><b>Intentos:</b> {{ userProfile?.plan?.numberAttempts }} |</small>
+                          <small class="mr-1"><b>Duración:</b> {{ convertSecondsToMinutes(exam?.durationTimeSec) }} min. |</small>
+                          <small class="mr-1"><b>Idioma:</b> {{ (exam?.language == 'EN')? 'Inglés' : 'Español' }} |</small>
+                          <small class="mr-1"><b>Intentos restantes:</b> {{ userProfile?.plan?.numberAttempts - exam?.numAttemptsMade }} |</small>
+                          <ng-container *ngIf="userProfile?.plan?.supportTranslation">
+                            <small class="mr-0" *ngIf="exam?.supportSpanish">
+                              <b>Apoyo en español:</b>  {{ (exam?.supportSpanish)? 'SI' : 'NO' }}
+                            </small>
+                          </ng-container>
+                        </p>
+                      </td>
+                      <td class="text-right">
+
+                        <div class="text-right">
+
+                          <div class="btn-group" *ngIf="!exam?.attemptsCompleted">
+                            <button type="button" [disabled]="exam?.attemptsCompleted" [disabled]="progressService" (click)="open(content, exam)" class="btn btn-sm btn-rounded btn btn-primary">
+                              <fa-icon class="mr-2" [icon]="['fas', 'play']"></fa-icon>Iniciar
+                            </button>
+                          </div>
+                          <div class="btn-group"  *ngIf="exam?.attemptsCompleted"> 
+                            <button type="button" [disabled]="true" (click)="open(content, exam)" class="btn btn-sm btn-rounded btn btn-success">
+                              <fa-icon class="mr-2" [icon]="['fas', 'ban']"></fa-icon>Terminado
+                            </button>
+                          </div>
+
+                          <!-- <br> -->
+                          
+                          
+                        </div>
+                          
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody class="text-center" *ngIf="!userProfile">
+                    <tr>
+                      <td>
+                        <div class="timeline-wrapper">
+                          <div class="timeline-item">
+                              <div class="animated-background">
+                                  <div class="background-masker header-top"></div>
+                                  <div class="background-masker header-left"></div>
+                                  <div class="background-masker header-right"></div>
+                                  <div class="background-masker header-bottom"></div>
+                                  <div class="background-masker subheader-left"></div>
+                                  <div class="background-masker subheader-right"></div>
+                                  <div class="background-masker subheader-bottom"></div>
+                                  <div class="background-masker content-top"></div>
+                                  <!-- <div class="background-masker content-first-end"></div>
+                                  <div class="background-masker content-second-line"></div>
+                                  <div class="background-masker content-second-end"></div>
+                                  <div class="background-masker content-third-line"></div>
+                                  <div class="background-masker content-third-end"></div> -->
+                              </div>
+                          </div>
+                      </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+ 
+  <ng-container *ngIf="userProfile?.plan?.expired">
+    <div class="col-md-12 pb-4">
+      <div class="alert alert-warning" role="alert">
+        Lo sentimos tu plan se venció, solicita tu renovación
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<!-- <ng-template #contentOne let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Cargando...</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    sdfsdf
+  </div>
+  <div class="modal-footer">
+    sdfsd
+  </div>
+</ng-template> -->
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Instrucciones</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ul>
+      <li>- El límite de tiempo es de: <b>{{convertSecondsToMinutes(category.durationTimeSec)}} min.</b></li>
+      <li>- Los números de preguntas son: <b>{{ category.totalQuestions }}</b></li>
+      <li>- No puedes guardar y terminar más tarde, por lo que se recomienda terminar lo mas pronto posible.</li>
+      <li>- Las preguntas se muestran por páginas.</li>
+      <li>- Puedes regresar y cambiar tus respuestas utilizando los botons "Siguiente" y "Atrás".</li>
+      <li>- La puntuación de aprobación es del <b>{{category.approvalPercentage}}%</b> </li>
+      <!-- <li *ngIf="settingLanguage == 'BOTH'">La traducción de apoyo está en Español</li> -->
+    </ul>
+    <br>
+    <p class="text-center">
+      <b>¡Éxitos en tu evaluación!</b>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" [disabled]="disabledButton" class="btn btn-rounded btn-primary" (click)="getExamen();">
+      <fa-icon *ngIf="!disabledButton" class="mr-1" [icon]="['fas', 'play']"></fa-icon>
+      <span *ngIf="disabledButton" class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
+      <!-- <div *ngIf="disabledButton" class="spinner-border m-2" role="status">
+        <span class="sr-only">Loading...</span>
+      </div> -->
+      Iniciar
+    </button>
+  </div>
+</ng-template>
+
